@@ -1,0 +1,8 @@
+credentials.json
+token.json
+*.pickle
+*.log
+*.png
+trial.py
+trial*.py
+secrets.py
