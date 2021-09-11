@@ -20,7 +20,7 @@ def get_users():
 
     # The ID and range of a sample spreadsheet.
     with open("SPREADSHEET_ID.pickle","rb") as file:
-        SPREADSHEET_ID = pickle.load()
+        SPREADSHEET_ID = pickle.load(file)
     RANGE_NAME = 'B1:AR'
 
     creds = None
