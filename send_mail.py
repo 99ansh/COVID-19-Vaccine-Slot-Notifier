@@ -75,6 +75,7 @@ def main():
         i=0
         #print(" [x]1`Received ",body_str)
         slots = json.loads(body_str)
+        print(slots)
         x={}
         y={}
         qstate=[]
@@ -91,10 +92,10 @@ def main():
             availability = slot["availability"]
             for item in availability:
                 #print("item=",item)
-                age=item["age"].split("Age ").pop()
-                if age=="18+":
+                age=item["age"]
+                if age=="18 & Above":
                     x[(center,address)].append((item["date"],item["vaccine"],item["status"]))
-                elif age=="45+":
+                elif age=="45 & Above":
                     y[(center,address)].append((item["date"],item["vaccine"],item["status"]))
             if len(y[(center,address)])==0:
                 y.pop((center,address))
@@ -104,9 +105,10 @@ def main():
         modified_item1={"state":qstate[0],"district":qdistrict[0],"age":"18+","data":x}
         modified_item2={"state":qstate[0],"district":qdistrict[0],"age":"45+","data":y}
 
-        # print(modified_item1)
-        # print(modified_item2)
+        print(modified_item1)
+        print(modified_item2)
         
+        #18+
         if (len(modified_item1["data"])>0):
             required_users = users.find({"state":state,"district":district,"age":"18+"})
             info = "<h2>State - "+modified_item1['state']+"</h2><h2>District - "+modified_item1['district']+"</h2>"+"<h2>Age - 18+</h2>"
